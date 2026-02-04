@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sh '''
                     python3 --version
-                    python3 script.py
+                    python3 testautomation.py
                 '''
             }
         }
