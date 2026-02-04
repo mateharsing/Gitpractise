@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 import random
 from requests.auth import HTTPBasicAuth
 from getpass import getpass
@@ -18,6 +19,7 @@ PARENT_ITEM_ID = 18008  # Valid parent item (e.g., a Set or Folder)
 VERIFICATION_CASE_ID = 18013  # ID of the verification case in
 RELATIONSHIP_TYPE_ID = 4  # ID of the relationship between AUT Test Runs and Verifications
 PICKLIST_FIELD_KEY = 'test_result$213'  # key for the picklist where my PASS/FAIL results go
+today = datetime.now().strftime("%Y-%m-%d")
 
 # ECG test cases using Greek letters
 ecg_cases = {
@@ -50,7 +52,7 @@ for greek, condition in ecg_cases.items():
             }
         },
         "fields": {
-            "name": f"ECG Test – {greek} ({condition})",
+            "name": f"ECG Test – {greek} ({condition}) – {today}",
             "description": f"Automated test result for {condition}",
             PICKLIST_FIELD_KEY: result_value
         }
