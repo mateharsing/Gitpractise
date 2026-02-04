@@ -1,14 +1,19 @@
 pipeline {
-    agent any
+  agent any
 
-    stages {
-        stage('Run Python script') {
-            steps {
-                sh '''
-                    python3 --version
-                    python3 testautomation.py
-                '''
-            }
-        }
+  stages {
+    stage('Setup & Run Python') {
+      steps {
+        sh '''
+          python3 -m venv venv
+          . venv/bin/activate
+
+          python -m pip install --upgrade pip
+          pip install requests
+
+          python testautomation.py
+        '''
+      }
     }
+  }
 }
